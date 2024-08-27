@@ -7,7 +7,6 @@ from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                              QMenu, QMessageBox, QCheckBox, QHBoxLayout, QLabel, QSystemTrayIcon, QDialog, QTimeEdit, QPushButton, QComboBox)
 from PyQt6.QtGui import QIcon, QColor, QFont, QAction
 from PyQt6.QtCore import Qt, QTimer, QTime
-from plyer import notification
 import pygame
 
 # Configuración del logging
@@ -100,7 +99,7 @@ class WeeklyPlanner(QMainWindow):
 
         # Diccionario para almacenar configuraciones de notificaciones
         self.notifications = {}
-    
+
     def add_activity(self, row, column):
         day = self.table.horizontalHeaderItem(column).text()
         time = self.table.verticalHeaderItem(row).text()
@@ -131,6 +130,8 @@ class WeeklyPlanner(QMainWindow):
         menu = QMenu()
         edit_action = QAction('Editar Actividad', self)
         delete_action = QAction('Eliminar Actividad', self)
+        stats_action = QAction('Ver Estadísticas', self)
+
         notification_action = QMenu('Notificaciones', self)
         priority_action = QMenu('Prioridad', self)
 
@@ -321,10 +322,14 @@ def main():
     app.setStyleSheet("""
         QTableWidget {
             background-color: #f5f5f5;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            selection-background-color: #e6f7ff;
         }
         QTableWidgetItem {
-            background-color: #e6f7ff;
+            background-color: #ffffff;
             border: 1px solid #ddd;
+            padding: 5px;
         }
         QPushButton {
             background-color: #4CAF50;
@@ -333,8 +338,20 @@ def main():
             padding: 10px;
             margin: 5px;
         }
+        QPushButton:hover {
+            background-color: #45a049;
+        }
         QLabel {
             color: #333333;
+            font-size: 12px;
+        }
+        QDialog {
+            background-color: #f0f0f0;
+            border-radius: 10px;
+        }
+        QMenu {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
         }
     """)
     
