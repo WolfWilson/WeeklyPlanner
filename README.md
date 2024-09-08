@@ -33,7 +33,6 @@
 
 Crear y activar un entorno virtual (opcional pero recomendado)
 
-python -m venv venv
 venv\Scripts\activate
 
 Instalar las dependencias
